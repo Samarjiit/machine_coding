@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 
 const Carousel = ({
+  //defining the props
   images = [],
   isLoading = false,
   imageLimit = images.length,
@@ -10,9 +11,10 @@ const Carousel = ({
   imgPerSlide = 2,
 }) => {
   const imgRef = useRef(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [imgWidth, setImgWidth] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0) //it will keep a track of current idx
+  const [imgWidth, setImgWidth] = useState(0) // to fix the image width
   console.log(currentIndex)
+
   //cases when images not provide to use
   useEffect(() => {
     if (images.length > 0) {
@@ -29,14 +31,14 @@ const Carousel = ({
       prevIndex === imageLimit - 1 ? 0 : prevIndex + 1
     )
   }
-  console.log(imgRef?.current?.offsetWidth)
+  console.log(imgRef?.current?.offsetWidth) //get current width of image. whenever the value of the ref changes it does not rerender the components
   return isLoading ? (
     <div>Loading...</div>
   ) : (
     <div className="carousel" style={{ width: imgPerSlide * imgWidth }}>
       <div
         className="image-container"
-        style={{ transform: `translate(-${currentIndex * imgWidth}px)` }}
+        style={{ transform: `translateX(-${currentIndex * imgWidth}px)` }}
       >
         {images
           .slice(0, imageLimit > images.length ? images.length : imageLimit)
