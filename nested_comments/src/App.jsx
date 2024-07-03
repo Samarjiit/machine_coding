@@ -6,10 +6,12 @@ const App = () => {
     <div>
       <h1>Nested Comment System</h1>
       <NestedComments
-        comments={commentsData}
+        comments={commentsData} //for scalabity we use here
         onSubmit={(content) => {}}
         onEdit={(content) => {}}
         onDelete={() => {}}
+        onUpvote={() => {}}
+        onDownvote={() => {}}
       />
     </div>
   )
